@@ -1,0 +1,2210 @@
+<html>
+<body>
+	<meta charset="utf-8"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
+<script src="underscore-min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script src="flipclock.min.js"></script>
+  <script src="underscore-min.js"></script>
+  <link rel="stylesheet" href="flipclock.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<head>
+<title>Color Pattern Memory Game</title>
+</head>
+<body style="background-color: #282923;">
+
+<nav class="navbar navbar-inverse" >
+  <div class="container-fluid">
+    <div class="navbar-header">
+    </div>
+    <ul class="nav navbar-nav">
+      <li style="background-color: red;max-width:270px;margin-left:-20px;"><a href="palaute.html" style="color:black;">Raportoi bugi/Anna palautetta</a></li>
+      </ul>
+      <div style="color:white;font-size:2em:font-weight:bold;position: absolute;left:41%;"><span style="font-size:2em;color:lime">Color </span><span style="font-size:2em;color:yellow">Pattern </span><span style="font-size:2em;color:aqua">Memory </span><span style="font-size:2em;color:red;">Game</span></div>
+    <div class="dropdown" style="float:right;">
+      <button class="dropbtn" style="max-width:160px;">Muut pelit</button>
+      <div class="dropdown-content">
+        <a id="flagquiz"  style="color:black;background-color:yellow;" href="flagquiz_finnish.html">Lippupeli</a>
+        <a href="lotto.html" style="color:black;background-color:orange;">Gambling</a>
+        <a id="pokemoncarddatabase" style="color:black;background-color:lightgreen;" href="index.php">Pokémon</a>
+        <a id="englishquiz"  style="color:black;background-color:lightblue;" href="englishquiz.html">English Quiz</a>
+        <a id="japanesequiz"  style="color:black;background-color:yellow;" href="hiragana.php">Japanese Quiz</a>
+        <a id="pokemonquizalternate"  style="color:black;background-color:pink;" href="pokemonquizalternate.html">Pokemon Quiz Alternate</a>
+        <a id="mathquiz"  style="color:black;background-color:coral;" href="mathquiz.html">Math Quiz</a>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="container">
+
+  <span style="color:yellow;position: absolute;right:29.5%;top:12%;font-size:2em;" id="tilesright"></span>
+  <button class="btn btn-info" id="replay" style="font-size:3em;position: absolute;left:20%;display:none">REPLAY (R)</button>
+  <button class="btn btn-info" id="lazy" style="font-size:3em;position: absolute;left:20%;display:none;top:20%;">I'M LAZY</button>
+  <button class="btn btn-info" id="start" style="font-size:3em;position: absolute;left:45%;display:none">START (S)</button>
+  <table class="table table-bordered info selections" style="position: absolute;width:240px;left:2%;top:6%;">
+
+    <tr>
+      <td>
+        <div style=""><span style="color:white;">Easy mode (E)</span>
+        </td>
+        <td>
+          <input id="easymode" style="position: absolute;" type="checkbox"/></div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div style=""><span style="color:white;">Normal mode (N)</span>
+      </td>  
+      <td>  
+      <input id="normalmode" style="position: absolute;" type="checkbox"/></div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div style=""><span style="color:white;">Hard mode (H)</span>
+      </td>
+      <td>
+        <input id="hardmode" style="position: absolute;" type="checkbox"/></div>
+      </td>
+    </tr>
+  </table>
+<div id="changecolor" style="position: absolute;left:2%;top:18%;font-size: 2em;">
+<table class="table table-bordered info mode">
+  <tr>
+    <td>
+  <span style="color:white;">Include all colors (SPACE)</span>
+</td>
+<td>
+  <input id="checkall" style="" type="checkbox"/>
+</td>
+  </tr>
+  <tr>
+    <td>
+  <button id="randomcolors">Random colors (Q)</button>
+</td>
+</tr>
+  <br>
+  <tr>
+    <td>
+  <span style="color:white;">Include </span><span id="includegreen" style="color:lime;">Lime (1)</span>
+</td>
+<td>
+  <input id="green" style="" type="checkbox"/>
+</td>
+</tr>
+<tr>
+  <td>
+  <span style="color:white;">Include </span><span id="includeyellow" style="color:yellow;">Yellow (2)</span>
+</td>
+<td>
+<input id="yellow" style="" type="checkbox"/>
+</td>
+  </tr>
+ <tr> 
+  <td>
+    <span style="color:white;">Include </span><span id="includeblue" style="color:aqua;">Aqua (3)</span>
+  </td>
+  <td>
+    <input id="blue" style="" type="checkbox"/>
+  </td>
+ </tr> 
+ <tr>  
+  <td>
+  <span style="color:white;">Include </span><span id="includecustom"style="color:red;">Red (4)</span>
+</td>
+<td>
+<input id="red" style="" type="checkbox"/>
+</td>
+</tr>
+</table>  
+
+</div>  
+
+<div id="prints" style="position: absolute;right: 0%;">
+  <div id="printred"></div>
+  <div id="printyellow"></div>
+  <div id="printlime"></div>
+  <div id="printgreen"></div>
+  <div id="printaqua"></div>
+  <div id="printfuchsia"></div>
+  <div id="printpurple"></div>
+  <div id="printorange"></div>
+  <div id="printolive"></div>
+  <div id="printteal"></div>
+  <div id="printmaroon"></div>
+  <div id="printpink"></div>
+</div>
+<div id="info" style="position: absolute;left:2%;top:55%;font-size:1.5em;">
+
+  <span style="color:white;"><span style="color:lime">2</span> colors checked = <span style="color:lime">4</span> seconds to remember (<span style="color:red">8</span> in hard mode)</span><br>
+  <span style="color:white;"><span style="color:yellow">3</span> colors checked = <span style="color:yellow">8</span> seconds to remember (<span style="color:red">4</span> in easy mode)</span></span><br>
+  <span style="color:white;"><span style="color:aqua">4</span> colors checked = <span style="color:aqua">12</span> seconds to remember (<span style="color:red">4</span> in easy mode)</span></span>
+
+</div>  
+
+  <table class="table table-bordered" id="maintable" style="display:none;">
+    <tr>
+      <td class="tile1"></td>
+      <td class="tile2"></td>
+      <td class="tile3"></td>
+      <td class="tile4"></td>
+      <td class="tile17" style="display: none;"></td>
+    </tr>
+    <tr>
+      <td class="tile5"></td>
+      <td class="tile6"></td>
+      <td class="tile7"></td>
+      <td class="tile8"></td>
+      <td class="tile18" style="display: none;"></td>
+    </tr>  
+    <tr>
+      <td class="tile9"></td>
+      <td class="tile10"></td>
+      <td class="tile11"></td>
+      <td class="tile12"></td>
+      <td class="tile19" style="display: none;"></td>
+    </tr>
+     <tr>
+      <td class="tile13"></td>
+      <td class="tile14"></td>
+      <td class="tile15"></td>
+      <td class="tile16"></td>
+      <td class="tile20" style="display: none;"></td>
+    </tr>
+    <tr>
+      <td class="tile21" style="display: none;"></td>
+      <td class="tile22" style="display: none;"></td>
+      <td class="tile23" style="display: none;"></td>
+      <td class="tile24" style="display: none;"></td>
+      <td class="tile25" style="display: none;"></td>
+    </tr>
+  </table> 
+
+   <table id="showtable" class="table table-bordered" style="display: none;">
+    <tr>
+      <td class="tile1right"></td>
+      <td class="tile2right"></td>
+      <td class="tile3right"></td>
+      <td class="tile4right"></td>
+      <td class="tile17right" style="display: none;"></td>
+    </tr>
+    <tr>
+      <td class="tile5right"></td>
+      <td class="tile6right"></td>
+      <td class="tile7right"></td>
+      <td class="tile8right"></td>
+      <td class="tile18right" style="display: none;"></td>
+    </tr>  
+    <tr>
+      <td class="tile9right"></td>
+      <td class="tile10right"></td>
+      <td class="tile11right"></td>
+      <td class="tile12right"></td>
+      <td class="tile19right" style="display: none;"></td>
+    </tr>
+     <tr>
+      <td class="tile13right"></td>
+      <td class="tile14right"></td>
+      <td class="tile15right"></td>
+      <td class="tile16right"></td>
+      <td class="tile20right" style="display: none;"></td>
+    </tr>
+    <tr>
+      <td class="tile21right" style="display: none;"></td>
+      <td class="tile22right" style="display: none;"></td>
+      <td class="tile23right" style="display: none;"></td>
+      <td class="tile24right" style="display: none;"></td>
+      <td class="tile25right" style="display: none;"></td>
+    </tr>  
+  </table> 
+
+
+  </div>
+
+  <button class="btn btn-success" style="position: absolute;left: 49%;display: none;" id="check">Check</button>
+
+</form> 
+<!--
+<div id="footer" style="margin:0;bottom:0;width: 100%;background-color: #12391A;height:50px;position: absolute;">
+    <span style='color:white;position: relative;float: left;top: 50%;left: 50%;'>© Riku.
+      </span>
+      <span style='color:white;position: absolute;float: right;bottom: 0;right: 5px;'>Beta Version 0.2
+      </span>
+</div>
+-->
+<script>
+/*$(document).ready(function(){
+
+    $(document).keydown(function(e){
+
+      if(e.key == "F5")
+      {
+        return false;
+      }
+
+    })
+})*/
+var colors = [];
+
+
+var lime = "lime";   
+
+
+ $("#includegreen").click(function(){
+
+  $("#green").prop('checked', false);
+  $("#yellow").prop('checked', false);
+  $("#blue").prop('checked', false);
+  $("#red").prop('checked', false);
+  $("#checkall").prop('checked', false);
+
+  $("#green").trigger("change");
+  $("#yellow").trigger("change");
+  $("#blue").trigger("change");
+  $("#red").trigger("change");
+  $("#checkall").trigger("change");
+
+
+
+      var iteration=$(this).data('iteration')||1
+      switch ( iteration) {
+        case 1:
+           $(this).css("color", "fuchsia");
+          // colors.splice("aqua");
+           //colors.push("blue");
+           lime = "fuchsia";   
+           console.log(colors);
+           $("#includegreen").html(`<span id="includegreen">Fuchsia</span>`);
+          break;
+        case 2:
+           $(this).css("color", "purple");
+           lime = "purple";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includegreen").html(`<span id="includegreen">Purple</span>`);
+          break;   
+        
+        case 3:
+           $(this).css("color", "pink");
+           lime = "pink";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includegreen").html(`<span id="includegreen">Pink</span>`);
+          break;
+
+         case 4:
+           $(this).css("color", "orange");
+           lime = "orange";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includegreen").html(`<span id="includegreen">Orange</span>`);
+          break;  
+         case 5:
+           $(this).css("color", "olive");
+           lime = "olive";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includegreen").html(`<span id="includegreen">Olive</span>`);
+          break;  
+          case 6:
+           $(this).css("color", "teal");
+           lime = "teal";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includegreen").html(`<span id="includegreen">Teal</span>`);
+          break;  
+
+           case 7:
+           $(this).css("color", "maroon");
+           lime = "maroon";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includegreen").html(`<span id="includegreen">Maroon</span>`);
+          break; 
+
+          case 8:
+           $(this).css("color", "red");
+           lime = "red";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includegreen").html(`<span id="includegreen">Red</span>`);
+          break; 
+
+          case 9:
+           $(this).css("color", "lime");
+           lime = "lime";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includegreen").html(`<span id="includegreen">Lime</span>`);
+          break; 
+
+          case 10:
+           $(this).css("color", "aqua");
+           lime = "aqua";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includegreen").html(`<span id="includegreen">Aqua</span>`);
+          break; 
+
+          case 11:
+           $(this).css("color", "yellow");
+           lime = "yellow";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includegreen").html(`<span id="includegreen">Yellow</span>`);
+          break; 
+ 
+      }
+      iteration++;
+      if (iteration>11) iteration=1
+      $(this).data('iteration',iteration)
+
+    })
+
+ var blue = "aqua";   
+
+
+ $("#includeblue").click(function(){
+
+  $("#green").prop('checked', false);
+  $("#yellow").prop('checked', false);
+  $("#blue").prop('checked', false);
+  $("#red").prop('checked', false);
+  $("#checkall").prop('checked', false);
+
+  $("#green").trigger("change");
+  $("#yellow").trigger("change");
+  $("#blue").trigger("change");
+  $("#red").trigger("change");
+  $("#checkall").trigger("change");
+
+
+      var iteration=$(this).data('iteration')||1
+      switch ( iteration) {
+         case 1:
+           $(this).css("color", "fuchsia");
+          // colors.splice("aqua");
+           //colors.push("blue");
+           blue = "fuchsia";   
+           console.log(colors);
+           $("#includeblue").html(`<span id="includeblue">Fuchsia</span>`);
+          break;
+        case 2:
+           $(this).css("color", "purple");
+           blue = "purple";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includeblue").html(`<span id="includeblue">Purple</span>`);
+          break;   
+        
+        case 3:
+           $(this).css("color", "pink");
+           blue = "pink";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includeblue").html(`<span id="includeblue">Pink</span>`);
+          break;
+
+         case 4:
+           $(this).css("color", "orange");
+           blue = "orange";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includeblue").html(`<span id="includeblue">Orange</span>`);
+          break;  
+         case 5:
+           $(this).css("color", "olive");
+           blue = "olive";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includeblue").html(`<span id="includeblue">Olive</span>`);
+          break;  
+          case 6:
+           $(this).css("color", "teal");
+           blue = "teal";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includeblue").html(`<span id="includeblue">Teal</span>`);
+          break;  
+
+           case 7:
+           $(this).css("color", "maroon");
+           blue = "maroon";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includeblue").html(`<span id="includeblue">Maroon</span>`);
+          break; 
+
+          case 8:
+           $(this).css("color", "red");
+           blue = "red";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includeblue").html(`<span id="includeblue">Red</span>`);
+          break; 
+
+          case 9:
+           $(this).css("color", "aqua");
+           blue = "aqua";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includeblue").html(`<span id="includeblue">Aqua</span>`);
+          break; 
+
+          case 10:
+           $(this).css("color", "lime");
+           blue = "lime";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includeblue").html(`<span id="includeblue">Aqua</span>`);
+          break; 
+
+          case 11:
+           $(this).css("color", "yellow");
+           blue = "yellow";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includeblue").html(`<span id="includeblue">Yellow</span>`);
+          break; 
+ 
+      }
+      iteration++;
+      if (iteration>11) iteration=1
+      $(this).data('iteration',iteration)
+
+    })
+
+var yellow = "yellow";
+ $("#includeyellow").click(function(){
+
+  $("#green").prop('checked', false);
+  $("#yellow").prop('checked', false);
+  $("#blue").prop('checked', false);
+  $("#red").prop('checked', false);
+  $("#checkall").prop('checked', false);
+
+  $("#green").trigger("change");
+  $("#yellow").trigger("change");
+  $("#blue").trigger("change");
+  $("#red").trigger("change");
+  $("#checkall").trigger("change");
+
+
+      var iteration=$(this).data('iteration')||1
+      switch ( iteration) {
+        case 1:
+           $(this).css("color", "fuchsia");
+          // colors.splice("aqua");
+           //colors.push("blue");
+           yellow = "fuchsia";   
+           console.log(colors);
+           $("#includeyellow").html(`<span id="includeyellow">Fuchsia</span>`);
+          break;
+        case 2:
+           $(this).css("color", "purple");
+           yellow = "purple";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includeyellow").html(`<span id="includeyellow">Purple</span>`);
+          break;   
+        
+        case 3:
+           $(this).css("color", "pink");
+           yellow = "pink";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includeyellow").html(`<span id="includeyellow">Pink</span>`);
+          break;
+
+         case 4:
+           $(this).css("color", "orange");
+           yellow = "orange";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includeyellow").html(`<span id="includeyellow">Orange</span>`);
+          break;  
+         case 5:
+           $(this).css("color", "olive");
+           yellow = "olive";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includeyellow").html(`<span id="includeyellow">Olive</span>`);
+          break;  
+          case 6:
+           $(this).css("color", "teal");
+           yellow = "teal";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includeyellow").html(`<span id="includecustom">Teal</span>`);
+          break;  
+
+           case 7:
+           $(this).css("color", "maroon");
+           yellow = "maroon";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includeyellow").html(`<span id="includeyellow">Maroon</span>`);
+          break; 
+
+          case 8:
+           $(this).css("color", "red");
+           yellow = "red";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includeyellow").html(`<span id="includeyellow">Red</span>`);
+          break; 
+
+          case 9:
+           $(this).css("color", "yellow");
+           yellow = "yellow";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includeyellow").html(`<span id="includeyellow">Yellow</span>`);
+          break; 
+
+          case 10:
+           $(this).css("color", "aqua");
+           yellow = "aqua";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includeyellow").html(`<span id="includeyellow">Aqua</span>`);
+          break; 
+
+          case 11:
+           $(this).css("color", "lime");
+           yellow = "lime";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includeyellow").html(`<span id="includeyellow">Lime</span>`);
+          break; 
+ 
+      }
+      iteration++;
+      if (iteration>11) iteration=1
+      $(this).data('iteration',iteration)
+
+    })
+
+
+var custom = "red";
+ $("#includecustom").click(function(){
+
+  
+
+  $("#green").prop('checked', false);
+  $("#yellow").prop('checked', false);
+  $("#blue").prop('checked', false);
+  $("#red").prop('checked', false);
+  $("#checkall").prop('checked', false);
+
+  $("#green").trigger("change");
+  $("#yellow").trigger("change");
+  $("#blue").trigger("change");
+  $("#red").trigger("change");
+  $("#checkall").trigger("change");
+
+
+      var iteration=$(this).data('iteration')||1
+      switch ( iteration) {
+        case 1:
+           $(this).css("color", "fuchsia");
+          // colors.splice("aqua");
+           //colors.push("blue");
+           custom = "fuchsia";   
+           console.log(colors);
+           $("#includecustom").html(`<span id="includecustom">Fuchsia</span>`);
+          break;
+        case 2:
+           $(this).css("color", "purple");
+           custom = "purple";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includecustom").html(`<span id="includecustom">Purple</span>`);
+          break;   
+        
+        case 3:
+           $(this).css("color", "pink");
+           custom = "pink";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includecustom").html(`<span id="includecustom">Pink</span>`);
+          break;
+
+         case 4:
+           $(this).css("color", "orange");
+           custom = "orange";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includecustom").html(`<span id="includecustom">Orange</span>`);
+          break;  
+         case 5:
+           $(this).css("color", "olive");
+           custom = "olive";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includecustom").html(`<span id="includecustom">Olive</span>`);
+          break;  
+          case 6:
+           $(this).css("color", "teal");
+           custom = "teal";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includecustom").html(`<span id="includecustom">Teal</span>`);
+          break;  
+
+           case 7:
+           $(this).css("color", "maroon");
+           custom = "maroon";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includecustom").html(`<span id="includecustom">Maroon</span>`);
+          break; 
+
+          case 8:
+           $(this).css("color", "red");
+           custom = "red";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includecustom").html(`<span id="includecustom">Red</span>`);
+          break; 
+
+           case 9:
+           $(this).css("color", "aqua");
+           custom = "aqua";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includecustom").html(`<span id="includecustom">Aqua</span>`);
+          break; 
+
+          case 10:
+           $(this).css("color", "lime");
+           custom = "lime";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includecustom").html(`<span id="includecustom">Lime</span>`);
+          break; 
+
+          case 11:
+           $(this).css("color", "yellow");
+           custom = "yellow";   
+           //colors.splice("yellow");
+           //colors.push("aqua");
+           console.log(colors);
+           $("#includecustom").html(`<span id="includecustom">Yellow</span>`);
+          break;
+ 
+      }
+      iteration++;
+      if (iteration>11) iteration=1
+      $(this).data('iteration',iteration)
+
+    })
+
+var colorsrandom = ["lime", "green", "yellow", "aqua", "red", "fuchsia", "purple", "pink", "orange", "olive", "teal", "maroon"];
+
+$("#randomcolors").click(function(){
+ 
+ $("#green").prop('checked', false);
+  $("#yellow").prop('checked', false);
+  $("#blue").prop('checked', false);
+  $("#red").prop('checked', false);
+  $("#checkall").prop('checked', false);
+
+  $("#green").trigger("change");
+  $("#yellow").trigger("change");
+  $("#blue").trigger("change");
+  $("#red").trigger("change");
+  $("#checkall").trigger("change");
+
+if(!colorsrandom)
+{
+  var colorsrandom = ["lime", "green", "yellow", "aqua", "red", "fuchsia", "purple", "pink", "orange", "olive", "teal", "maroon"];
+}
+
+    setTimeout(function(){
+
+      var randomcolor = colorsrandom[Math.floor(Math.random() * colorsrandom.length)];
+      console.log(randomcolor);
+      var index = colorsrandom.indexOf(randomcolor);
+      if (index !== -1) colorsrandom.splice(index, 1);
+      lime = randomcolor;
+      $("#includegreen").html(`<span id="includegreen" style="color:${randomcolor};text-transform:capitalize;">${randomcolor}</span>`);
+    },100)
+     setTimeout(function(){
+      var randomcolor2 = colorsrandom[Math.floor(Math.random() * colorsrandom.length)];
+      console.log(randomcolor2);
+      var index2 = colorsrandom.indexOf(randomcolor2);
+      if (index2 !== -1) colorsrandom.splice(index2, 1);
+      yellow = randomcolor2;
+      $("#includeyellow").html(`<span id="includeyellow" style="color:${randomcolor2};text-transform:capitalize;">${randomcolor2}</span>`);
+    },200)
+     setTimeout(function(){
+      var randomcolor3 = colorsrandom[Math.floor(Math.random() * colorsrandom.length)];
+      console.log(randomcolor3);
+      var index2 = colorsrandom.indexOf(randomcolor3);
+      if (index2 !== -1) colorsrandom.splice(index2, 1);
+      blue =  randomcolor3;
+      $("#includeblue").html(`<span id="includeblue" style="color:${randomcolor3};text-transform:capitalize;">${randomcolor3}</span>`);
+    },300)
+    setTimeout(function(){ 
+      var randomcolor4 = colorsrandom[Math.floor(Math.random() * colorsrandom.length)];
+      console.log(randomcolor4);
+      var index2 = colorsrandom.indexOf(randomcolor4);
+      if (index2 !== -1) colorsrandom.splice(index2, 1);
+      custom =  randomcolor4;
+      $("#includecustom").html(`<span id="includecustom" style="color:${randomcolor4};text-transform:capitalize;">${randomcolor4}</span>`);
+      console.log(colorsrandom);
+    },400)
+
+})
+
+
+
+$("#replay").click(function(){
+
+    location.reload();
+
+})
+
+$('input:checkbox').each(function(){
+  $(this).css("transform", "scale(1.5)");
+})
+
+$('input:checkbox').change(function(){
+
+  if($('.mode input:checked').length >= 2 && $('#easymode').is(":checked"))
+  {
+      $("#start").show();
+  }
+  else if($('.mode input:checked').length >= 2 && $('#normalmode').is(":checked"))
+  {
+      $("#start").show();
+  }
+  else if($('.mode input:checked').length >= 2 && $('#hardmode').is(":checked"))
+  {
+      $("#start").show();
+  }
+  else
+  {
+    $("#start").hide();
+  }
+
+
+})
+
+$("input#easymode").change(function(){
+  if($('#easymode ').is(":checked"))
+  {
+    $("#hardmode").prop('disabled', true);
+    $("#normalmode").prop('disabled', true);
+      $("#showtable").css("width", "400px");
+      $("#maintable").css("width", "400px");
+      $(".tile4right").remove();
+      $(".tile4").remove();
+      $(".tile8right").remove();
+      $(".tile8").remove();
+      $(".tile12right").remove();
+      $(".tile12").remove();
+      $(".tile13right").remove();
+      $(".tile13").remove();
+      $(".tile14right").remove();
+      $(".tile14").remove();
+      $(".tile15right").remove();
+      $(".tile15").remove();
+      $(".tile16right").remove();
+      $(".tile16").remove();
+      $(".tile17right").remove();
+      $(".tile17").remove();
+      $(".tile18right").remove();
+      $(".tile18").remove();
+      $(".tile19right").remove();
+      $(".tile19").remove();
+      $(".tile20right").remove();
+      $(".tile20").remove();
+      $(".tile21right").remove();
+      $(".tile21").remove();
+      $(".tile22right").remove();
+      $(".tile22").remove();
+      $(".tile23right").remove();
+      $(".tile23").remove();
+      $(".tile24right").remove();
+      $(".tile24").remove();
+      $(".tile25right").remove();
+      $(".tile25").remove();
+
+
+  }
+  if(!$('#easymode ').is(":checked"))
+  {
+      
+
+      $("#showtable").css("width", "600px");
+      $("#maintable").css("width", "600px");
+      $("#hardmode").prop('disabled', false);
+      $("#normalmode").prop('disabled', false);
+      $(".tile4right").show();
+      $(".tile4").show();
+      $(".tile8right").show();
+      $(".tile8").show();
+      $(".tile12right").show();
+      $(".tile12").show();
+      $(".tile13right").show();
+      $(".tile13").show();
+      $(".tile14right").show();
+      $(".tile14").show();
+      $(".tile15right").show();
+      $(".tile15").show();
+      $(".tile16right").show();
+      $(".tile16").show();
+      
+  }
+})
+
+$("input#normalmode").change(function(){
+  if($('#normalmode ').is(":checked"))
+  {
+    $("#easymode").prop('disabled', true);
+    $("#hardmode").prop('disabled', true);
+    $(".tile17right").remove();
+    $(".tile17").remove();
+    $(".tile18right").remove();
+    $(".tile18").remove();
+    $(".tile19right").remove();
+    $(".tile19").remove();
+    $(".tile20right").remove();
+    $(".tile20").remove();
+    $(".tile21right").remove();
+    $(".tile21").remove();
+    $(".tile22right").remove();
+    $(".tile22").remove();
+    $(".tile23right").remove();
+    $(".tile23").remove();
+    $(".tile24right").remove();
+    $(".tile24").remove();
+    $(".tile25right").remove();
+    $(".tile25").remove();
+  }
+  if(!$('#normalmode ').is(":checked"))
+  {
+    $("#easymode").prop('disabled', false);
+    $("#hardmode").prop('disabled', false);
+  }
+
+})
+
+$("input#hardmode").change(function(){
+  if($('#hardmode ').is(":checked"))
+  {
+      $("#easymode").prop('disabled', true);
+      $("#normalmode").prop('disabled', true);
+      $("#showtable").css("transform", "scale(0.7)");
+      $("#maintable").css("transform", "scale(0.7)");
+      $("#showtable").css("margin-top", "-90px");
+      $("#maintable").css("margin-top", "-90px");
+      $(".tile17right").show();
+      $(".tile17").show();
+      $(".tile18right").show();
+      $(".tile18").show();
+      $(".tile19right").show();
+      $(".tile19").show();
+      $(".tile20right").show();
+      $(".tile20").show();
+      $(".tile21right").show();
+      $(".tile21").show();
+      $(".tile22right").show();
+      $(".tile22").show();
+      $(".tile23right").show();
+      $(".tile23").show();
+      $(".tile24right").show();
+      $(".tile24").show();
+      $(".tile25right").show();
+      $(".tile25").show();
+  }
+  if(!$('#hardmode ').is(":checked"))
+  {
+      $("#easymode").prop('disabled', false);
+      $("#hardmode").prop('disabled', false);
+      $("#normalmode").prop('disabled', false);
+      $("table").css("transform", "scale(1)");
+      $("#showtable").css("margin-top", "90px");
+      $(".tile17right").hide();
+      $(".tile17").hide();
+      $(".tile18right").hide();
+      $(".tile18").hide();
+      $(".tile19right").hide();
+      $(".tile19").hide();
+      $(".tile20right").hide();
+      $(".tile20").hide();
+      $(".tile21right").hide();
+      $(".tile21").hide();
+      $(".tile22right").hide();
+      $(".tile22").hide();
+      $(".tile23right").hide();
+      $(".tile23").hide();
+      $(".tile24right").hide();
+      $(".tile24").hide();
+      $(".tile25right").hide();
+      $(".tile25").hide();
+  }
+})
+
+$("input#checkall").change(function(){
+
+  if($('#checkall').is(":checked"))
+  {
+    $("#start").show();
+      $("#green").prop('checked', true);
+      $("#yellow").prop('checked', true);
+      $("#blue").prop('checked', true);
+      $("#red").prop('checked', true);
+
+      $("#green").trigger("change");
+      $("#yellow").trigger("change");
+      $("#blue").trigger("change");
+      $("#red").trigger("change");
+
+  }
+  if(!$('#checkall').is(":checked"))
+  {
+    $("#start").hide();
+      $("#green").prop('checked', false);
+      $("#yellow").prop('checked', false);
+      $("#blue").prop('checked', false);
+      $("#red").prop('checked', false);
+
+      $("#green").trigger("change");
+      $("#yellow").trigger("change");
+      $("#blue").trigger("change");
+      $("#red").trigger("change");
+  }
+
+
+})
+
+var color1;
+var color2;
+var color3;
+var color4;
+var keis = 0;
+
+$("input#green").change(function(){
+   if(!$('#green').is(":checked"))
+    {
+         var index = colors.indexOf(lime);
+      if (index > -1) {
+        colors.splice(index, 1);
+      }
+    }
+
+    if($('#green').is(":checked"))
+    {
+        color1 = lime;
+        colors.push(lime);
+    }
+    if($('#green').is(":checked") && $('#yellow').is(":checked") && !$('#blue').is(":checked") && !$('#red').is(":checked"))
+    {
+        color1 = lime;
+        color2 = yellow;
+        keis = 2;
+    }
+    if($('#green').is(":checked") && $('#blue').is(":checked") && !$('#yellow').is(":checked") && !$('#red').is(":checked"))
+    {
+        color1 = lime;
+        color2 = blue;
+        keis = 2;
+    }
+    if(!$('#yellow').is(":checked") && !$('#blue').is(":checked") && $('#green').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = lime;
+        color2 = custom;
+        keis = 2;
+    }
+    console.log(colors);
+    if($('#green').is(":checked") && $('#yellow').is(":checked") && $('#blue').is(":checked") && !$('#red').is(":checked"))
+    {
+        color1 = lime;
+        color2 = yellow;
+        color3 = blue;
+        keis = 3;
+    }
+    if($('#green').is(":checked") && $('#blue').is(":checked") && !$('#yellow').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = lime;
+        color2 = blue;
+        color3 = custom;
+        keis = 3;
+    }
+    if($('#yellow').is(":checked") && !$('#blue').is(":checked") && $('#green').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = lime;
+        color2 = custom;
+        color3 = yellow;
+        keis = 3;
+    }
+    console.log(colors);
+    if($('#green').is(":checked") && $('#yellow').is(":checked") && $('#blue').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = lime;
+        color2 = yellow;
+        color3 = blue;
+        color4 = custom;
+        keis = 4;
+    }
+    if($('#green').is(":checked") && $('#blue').is(":checked") && $('#yellow').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = lime;
+        color2 = yellow;
+        color3 = blue;
+        color4 = custom;
+        keis = 4;
+    }
+    if($('#yellow').is(":checked") && $('#blue').is(":checked") && $('#green').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = lime;
+        color2 = yellow;
+        color3 = blue;
+        color4 = custom;
+        keis = 4;
+    }
+
+})
+
+$("input#yellow").change(function(){
+
+    if(!$('#yellow').is(":checked"))
+    {
+         var index = colors.indexOf("yellow");
+      if (index > -1) {
+        colors.splice(index, 1);
+      }
+        
+    }
+    if($('#yellow').is(":checked"))
+    {
+        color2 = yellow;
+        colors.push(yellow);
+        
+    }
+    if(!$('#green').is(":checked") && $('#yellow').is(":checked") && !$('#blue').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = yellow;
+        color2 = custom;
+        keis = 2;
+    }
+    if(!$('#green').is(":checked") && $('#blue').is(":checked") && $('#yellow').is(":checked") && !$('#red').is(":checked"))
+    {
+        color1 = yellow;
+        color2 = blue;
+        keis = 2;
+    }
+    if($('#yellow').is(":checked") && !$('#blue').is(":checked") && $('#green').is(":checked") && !$('#red').is(":checked"))
+    {
+        color1 = yellow;
+        color2 = lime;
+        keis = 2;
+    }
+    console.log(colors);
+    if($('#green').is(":checked") && $('#yellow').is(":checked") && $('#blue').is(":checked") && !$('#red').is(":checked"))
+    {
+        color1 = yellow;
+        color2 = lime;
+        color3 = blue;
+        keis = 3;
+    }
+    if($('#green').is(":checked") && !$('#blue').is(":checked") && $('#yellow').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = yellow;
+        color2 = lime;
+        color3 = custom;
+        keis = 3;
+    }
+    if($('#yellow').is(":checked") && $('#blue').is(":checked") && !$('#green').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = yellow;
+        color2 = custom;
+        color3 = blue;
+        keis = 3;
+    }
+    console.log(colors);
+    if($('#green').is(":checked") && $('#yellow').is(":checked") && $('#blue').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = lime;
+        color2 = yellow;
+        color3 = blue;
+        color4 = custom;
+        keis = 4;
+    }
+    if($('#green').is(":checked") && $('#blue').is(":checked") && $('#yellow').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = lime;
+        color2 = yellow;
+        color3 = blue;
+        color4 = custom;
+        keis = 4;
+    }
+    if($('#yellow').is(":checked") && $('#blue').is(":checked") && $('#green').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = lime;
+        color2 = yellow;
+        color3 = blue;
+        color4 = custom;
+        keis = 4;
+    }
+
+})    
+
+$("input#blue").change(function(){
+    if(!$('#blue').is(":checked"))
+    {
+         var index = colors.indexOf(blue);
+      if (index > -1) {
+        colors.splice(index, 1);
+      }
+    }
+    if($('#blue').is(":checked"))
+    {
+        color3 = blue;
+        colors.push(blue);
+    }
+    if(!$('#green').is(":checked") && $('#red').is(":checked") && $('#blue').is(":checked") && !$('#yellow').is(":checked"))
+    {
+        color1 = blue;
+        color2 = custom;
+        keis = 2;
+    }
+    if(!$('#green').is(":checked") && $('#blue').is(":checked") && $('#yellow').is(":checked") && !$('#red').is(":checked"))
+    {
+        color1 = blue;
+        color2 = yellow;
+        keis = 2;
+    }
+    if(!$('#yellow').is(":checked") && $('#blue').is(":checked") && $('#green').is(":checked") && !$('#red').is(":checked"))
+    {
+        color1 = blue;
+        color2 = lime;
+        keis = 2;
+    }
+    console.log(colors);
+    if($('#green').is(":checked") && $('#yellow').is(":checked") && $('#blue').is(":checked") && !$('#red').is(":checked"))
+    {
+        color1 = yellow;
+        color2 = lime;
+        color3 = blue;
+        keis = 3;
+    }
+    if(!$('#green').is(":checked") && $('#blue').is(":checked") && $('#yellow').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = blue;
+        color2 = yellow;
+        color3 = custom;
+        keis = 3;
+    }
+    if(!$('#yellow').is(":checked") && $('#blue').is(":checked") && $('#green').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = lime;
+        color2 = custom;
+        color3 = blue;
+        keis = 3;
+    }
+    console.log(colors);
+    if($('#green').is(":checked") && $('#yellow').is(":checked") && $('#blue').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = lime;
+        color2 = yellow;
+        color3 = blue;
+        color4 = custom;
+        keis = 4;
+    }
+    if($('#green').is(":checked") && $('#blue').is(":checked") && $('#yellow').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = lime;
+        color2 = yellow;
+        color3 = blue;
+        color4 = custom;
+        keis = 4;
+    }
+    if($('#yellow').is(":checked") && $('#blue').is(":checked") && $('#green').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = lime;
+        color2 = yellow;
+        color3 = blue;
+        color4 = custom;
+        keis = 4;
+    }
+})    
+
+$("input#red").change(function(){    
+    if(!$('#red').is(":checked"))
+    {
+        var index = colors.indexOf(custom);
+      if (index > -1) {
+        colors.splice(index, 1);
+      }
+        //colors.splice("red");
+    }
+    if($('#red').is(":checked"))
+    {
+        color4 = custom;
+        colors.push(custom);
+    }
+    if(!$('#green').is(":checked") && !$('#yellow').is(":checked") && $('#blue').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = custom;
+        color2 = blue;
+        keis = 2;
+    }
+    if(!$('#green').is(":checked") && !$('#blue').is(":checked") && $('#yellow').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = custom;
+        color2 = yellow;
+        keis = 2;
+    }
+    if(!$('#yellow').is(":checked") && !$('#blue').is(":checked") && $('#green').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = custom;
+        color2 = lime;
+        keis = 2;
+    }
+    
+    console.log(colors);
+    if(!$('#green').is(":checked") && $('#yellow').is(":checked") && $('#blue').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = yellow;
+        color2 = custom;
+        color3 = blue;
+        keis = 3;
+    }
+    if($('#green').is(":checked") && !$('#blue').is(":checked") && $('#yellow').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = yellow;
+        color2 = lime;
+        color3 = custom;
+        keis = 3;
+    }
+    if(!$('#yellow').is(":checked") && $('#blue').is(":checked") && $('#green').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = lime;
+        color2 = custom;
+        color3 = blue;
+        keis = 3;
+    }
+    console.log(colors);
+    if($('#green').is(":checked") && $('#yellow').is(":checked") && $('#blue').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = lime;
+        color2 = yellow;
+        color3 = blue;
+        color4 = custom;
+        keis = 4;
+    }
+    if($('#green').is(":checked") && $('#blue').is(":checked") && $('#yellow').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = lime;
+        color2 = yellow;
+        color3 = blue;
+        color4 = custom;
+        keis = 4;
+    }
+    if($('#yellow').is(":checked") && $('#blue').is(":checked") && $('#green').is(":checked") && $('#red').is(":checked"))
+    {
+        color1 = lime;
+        color2 = yellow;
+        color3 = blue;
+        color4 = custom;
+        keis = 4;
+    }
+  })
+
+
+
+ var counter = 0;
+var lazyrandom = Math.floor(Math.random()*10)+1;
+//console.log(lazyrandom); 
+$("#start").click(function(){
+  $(this).data('clicked', true);
+$(".mode").hide();
+$(".selections").hide();
+/*$("#easymode").prop('disabled', true);
+$("#normalmode").prop('disabled', true);
+$("#hardmode").prop('disabled', true);
+$("#includeyellow").prop('disabled', true);
+$("#includeblue").prop('disabled', true);
+$("#includegreen").prop('disabled', true);
+$("#includecustom").prop('disabled', true);
+$("#checkall").prop('disabled', true);*/
+
+
+$("#start").hide();
+
+$("td").each(function(){
+
+  var randomcolor = colors[Math.floor(Math.random() * colors.length)];
+
+  counter++;
+  $(".tile" + counter +"right").css("background-color", "" + randomcolor + "")
+
+
+})
+var timeout = 0;
+ 
+ 
+$("#showtable").show();
+
+    
+    //2 colors checked
+    if(keis == 2)
+    {
+      timeout = 4000;
+
+    if(keis == 2 && $('#hardmode').is(":checked"))
+    {
+      timeout = 8000;
+
+      setTimeout(function(){
+
+        $("#showtable").hide();
+        $("#maintable").show();
+        $("#check").show();
+        if(lazyrandom == 5)
+        {
+          $("#lazy").show();
+        }
+      },timeout)
+    }
+
+      setTimeout(function(){
+
+        $("#showtable").hide();
+        $("#maintable").show();
+        $("#check").show();
+        if(lazyrandom == 5)
+        {
+          $("#lazy").show();
+        }
+      },timeout)
+    } 
+    //3 colors checked
+    if(keis == 3)
+    {
+      timeout = 8000;
+
+      if(keis == 3 && $('#easymode').is(":checked"))
+    {
+      timeout = 4000;
+
+      setTimeout(function(){
+
+        $("#showtable").hide();
+        $("#maintable").show();
+        $("#check").show();
+        if(lazyrandom == 5)
+        {
+          $("#lazy").show();
+        }
+      },timeout)
+    }
+
+      setTimeout(function(){
+
+        $("#showtable").hide();
+        $("#maintable").show();
+        $("#check").show();
+        if(lazyrandom == 5)
+        {
+          $("#lazy").show();
+        }
+      },timeout)
+    }
+    //4 colors checked
+    if(keis == 4)
+    {
+      timeout = 12000;
+
+       if(keis == 4 && $('#easymode').is(":checked"))
+    {
+      timeout = 4000;
+
+      setTimeout(function(){
+
+        $("#showtable").hide();
+        $("#maintable").show();
+        $("#check").show();
+        if(lazyrandom == 5)
+        {
+          $("#lazy").show();
+        }
+      },timeout)
+    }
+
+      setTimeout(function(){
+
+        $("#showtable").hide();
+        $("#maintable").show();
+        $("#check").show();
+        if(lazyrandom == 5)
+        {
+          $("#lazy").show();
+        }
+      },timeout)
+    }
+    
+
+
+$("#printred").html("<span style='color:red;font-size:2em;'>Red: <span>" + $('td').filter(function(){ return red = $(this).css('background-color') == 'rgb(255, 0, 0)'}).length + "</span></span>");
+$("#printyellow").html("<span style='color:yellow;font-size:2em;'>Yellow: " + $('td').filter(function(){ return red = $(this).css('background-color') == 'rgb(255, 255, 0)'}).length + "</span>");
+$("#printlime").html("<span style='color:lime;font-size:2em;'>Lime: " + $('td').filter(function(){ return red = $(this).css('background-color') == 'rgb(0, 255, 0)'}).length + "</span>");
+$("#printgreen").html("<span style='color:green;font-size:2em;'>Green: " + $('td').filter(function(){ return red = $(this).css('background-color') == 'rgb(0, 128, 0)'}).length + "</span>");
+$("#printaqua").html("<span style='color:aqua;font-size:2em;'>Aqua: " + $('td').filter(function(){ return red = $(this).css('background-color') == 'rgb(0, 255, 255)'}).length + "</span>");
+$("#printfuchsia").html("<span style='color:fuchsia;font-size:2em;'>Fuchsia: " + $('td').filter(function(){ return red = $(this).css('background-color') == 'rgb(255, 0, 255)'}).length + "</span>");
+$("#printpurple").html("<span style='color:purple;font-size:2em;'>Purple: " + $('td').filter(function(){ return red = $(this).css('background-color') == 'rgb(128, 0, 128)'}).length + "</span>");
+$("#printorange").html("<span style='color:orange;font-size:2em;'>Orange: " + $('td').filter(function(){ return red = $(this).css('background-color') == 'rgb(255, 165, 0)'}).length + "</span>");
+$("#printolive").html("<span style='color:olive;font-size:2em;'>Olive: " + $('td').filter(function(){ return red = $(this).css('background-color') == 'rgb(128, 128, 0)'}).length + "</span>");
+$("#printteal").html("<span style='color:teal;font-size:2em;'>Teal: " + $('td').filter(function(){ return red = $(this).css('background-color') == 'rgb(0, 128, 128)'}).length + "</span>");
+$("#printmaroon").html("<span style='color:maroon;font-size:2em;'>Maroon: " + $('td').filter(function(){ return red = $(this).css('background-color') == 'rgb(128, 0, 0)'}).length + "</span>");
+$("#printpink").html("<span style='color:pink;font-size:2em;'>Pink: " + $('td').filter(function(){ return red = $(this).css('background-color') == 'rgb(255, 192, 203)'}).length + "</span>");
+
+})
+
+
+/*
+  <div id="printgreen"></div>
+  <div id="printaqua"></div>
+  <div id="printfuchsia"></div>
+  <div id="printpurple"></div>
+  <div id="printpink"></div>
+  <div id="printorange"></div>
+  <div id="printolive"></div>
+  <div id="printoteal"></div>
+  <div id="printomaroon"></div>*/
+
+
+var tdclick = 0;
+var tilesonrightplace = 0;
+
+
+//change tile color on click  
+$(function(){
+    $('td').not($(".info td")).click(function(){
+      var iteration=$(this).data('iteration')||1
+      switch ( iteration) {
+        case 1:
+          $(this).css("background-color", "" + color1 +"");
+          break;
+        
+        case 2:
+          $(this).css("background-color", "" + color2 +"");
+          break;
+
+        case 3:
+          $(this).css("background-color", "" + color3 +"");
+          break;
+
+        case 4:
+          $(this).css("background-color", "" + color4 +"");
+          break;    
+      }
+      iteration++;
+      if (iteration>keis) iteration=1
+      $(this).data('iteration',iteration)
+
+
+ // var find = $("#prints").find("#printred").children().children().text();
+ // console.log(find);
+   /* if($(this).css('background-color') != 'rgb(255, 0, 0)')
+    {
+      
+      find--;
+      $("#printred").html("<span style='color:red;font-size:2em;'>Red: " + find + "</span>");
+    }
+    if($(this).css('background-color') == 'rgb(255, 0, 0)')
+    {
+      
+      find++;
+      $("#printred").html("<span style='color:red;font-size:2em;'>Red: " + find + "</span>");
+    }
+*/
+
+
+
+    })
+  })
+
+ var checkstyle = "scale(0.6)";
+ //check the right answers
+$("#check").click(function(){
+  $("#lazy").hide();
+$(this).hide();
+$("#replay").show();
+
+  $("#showtable").show();
+
+  $("#maintable td").each(function(){
+
+    $(this).off();
+})
+  
+
+  if($(".tile1").css("background-color") == $(".tile1right").css("background-color"))
+    {
+      tilesonrightplace++;
+    }
+    if($(".tile1").css("background-color") != $(".tile1right").css("background-color"))
+    {
+      $(".tile1").css("background-image", "url(wrong.png)");
+    }
+
+  if($(".tile2").css("background-color") == $(".tile2right").css("background-color"))
+  {
+    tilesonrightplace++;
+  }
+  if($(".tile2").css("background-color") != $(".tile2right").css("background-color"))
+    {
+      $(".tile2").css("background-image", "url(wrong.png)");
+    }
+
+    if($(".tile3").css("background-color") == $(".tile3right").css("background-color"))
+    {
+      tilesonrightplace++;
+    }
+    if($(".tile3").css("background-color") != $(".tile3right").css("background-color"))
+    {
+      $(".tile3").css("background-image", "url(wrong.png)");
+    }
+
+
+    if($(".tile4").css("background-color") == $(".tile4right").css("background-color"))
+    {
+      tilesonrightplace++;
+    }
+    if($(".tile4").css("background-color") != $(".tile4right").css("background-color"))
+    {
+      $(".tile4").css("background-image", "url(wrong.png)");
+    }
+
+
+      if($(".tile5").css("background-color") == $(".tile5right").css("background-color"))
+      {
+        tilesonrightplace++;
+      }
+      if($(".tile5").css("background-color") != $(".tile5right").css("background-color"))
+    {
+      $(".tile5").css("background-image", "url(wrong.png)");
+    }
+
+
+      if($(".tile6").css("background-color") == $(".tile6right").css("background-color"))
+      {
+        tilesonrightplace++;
+      }
+      if($(".tile6").css("background-color") != $(".tile6right").css("background-color"))
+    {
+      $(".tile6").css("background-image", "url(wrong.png)");
+    }
+
+    if($(".tile7").css("background-color") == $(".tile7right").css("background-color"))
+    {
+      tilesonrightplace++;
+    }
+    if($(".tile7").css("background-color") != $(".tile7right").css("background-color"))
+    {
+      $(".tile7").css("background-image", "url(wrong.png)");
+    }
+
+    if($(".tile8").css("background-color") == $(".tile8right").css("background-color"))
+    {
+      tilesonrightplace++;
+    }
+    if($(".tile8").css("background-color") != $(".tile8right").css("background-color"))
+    {
+      $(".tile8").css("background-image", "url(wrong.png)");
+    }
+    if($(".tile9").css("background-color") == $(".tile9right").css("background-color"))
+    {
+      tilesonrightplace++;
+    }
+    if($(".tile9").css("background-color") != $(".tile9right").css("background-color"))
+    {
+      $(".tile9").css("background-image", "url(wrong.png)");
+    }
+
+      if($(".tile10").css("background-color") == $(".tile10right").css("background-color"))
+      {
+        tilesonrightplace++;
+
+      }
+      if($(".tile10").css("background-color") != $(".tile10right").css("background-color"))
+    {
+      $(".tile10").css("background-image", "url(wrong.png)");
+    }
+
+    
+      if($(".tile11").css("background-color") == $(".tile11right").css("background-color"))
+      {
+        tilesonrightplace++;
+      }
+      if($(".tile11").css("background-color") != $(".tile11right").css("background-color"))
+    {
+      $(".tile11").css("background-image", "url(wrong.png)");
+    }
+
+  
+      if($(".tile12").css("background-color") == $(".tile12right").css("background-color"))
+      {
+        tilesonrightplace++;
+      }
+      if($(".tile12").css("background-color") != $(".tile12right").css("background-color"))
+    {
+      $(".tile12").css("background-image", "url(wrong.png)");
+    }
+
+
+
+      if($(".tile13").css("background-color") == $(".tile13right").css("background-color"))
+      {
+        tilesonrightplace++;    
+      }
+      if($(".tile13").css("background-color") != $(".tile13right").css("background-color"))
+    {
+      $(".tile13").css("background-image", "url(wrong.png)");
+    }
+
+      if($(".tile14").css("background-color") == $(".tile14right").css("background-color"))
+      {
+        tilesonrightplace++;
+      }
+      if($(".tile14").css("background-color") != $(".tile14right").css("background-color"))
+    {
+      $(".tile14").css("background-image", "url(wrong.png)");
+    }
+
+
+      if($(".tile15").css("background-color") == $(".tile15right").css("background-color"))
+      {
+        tilesonrightplace++; 
+      }
+      if($(".tile15").css("background-color") != $(".tile15right").css("background-color"))
+    {
+      $(".tile15").css("background-image", "url(wrong.png)");
+    }
+
+ 
+      if($(".tile16").css("background-color") == $(".tile16right").css("background-color"))
+      {
+        tilesonrightplace++;      
+      }
+      if($(".tile16").css("background-color") != $(".tile16right").css("background-color"))
+    {
+      $(".tile16").css("background-image", "url(wrong.png)");
+    }
+
+      if($(".tile17").css("background-color") == $(".tile17right").css("background-color"))
+      {
+        tilesonrightplace++;      
+      }
+      if($(".tile17").css("background-color") != $(".tile17right").css("background-color"))
+    {
+      $(".tile17").css("background-image", "url(wrong.png)");
+    }
+      if($(".tile18").css("background-color") == $(".tile18right").css("background-color"))
+      {
+        tilesonrightplace++;      
+      }
+      if($(".tile18").css("background-color") != $(".tile18right").css("background-color"))
+    {
+      $(".tile18").css("background-image", "url(wrong.png)");
+    }
+      if($(".tile19").css("background-color") == $(".tile19right").css("background-color"))
+      {
+        tilesonrightplace++;      
+      }
+      if($(".tile19").css("background-color") != $(".tile19right").css("background-color"))
+    {
+      $(".tile19").css("background-image", "url(wrong.png)");
+    }
+      if($(".tile20").css("background-color") == $(".tile20right").css("background-color"))
+      {
+        tilesonrightplace++;      
+      }
+      if($(".tile20").css("background-color") != $(".tile20right").css("background-color"))
+    {
+      $(".tile20").css("background-image", "url(wrong.png)");
+    }
+      if($(".tile21").css("background-color") == $(".tile21right").css("background-color"))
+      {
+        tilesonrightplace++;      
+      }
+      if($(".tile21").css("background-color") != $(".tile21right").css("background-color"))
+    {
+      $(".tile21").css("background-image", "url(wrong.png)");
+    }
+      if($(".tile22").css("background-color") == $(".tile22right").css("background-color"))
+      {
+        tilesonrightplace++;      
+      }
+      if($(".tile22").css("background-color") != $(".tile22right").css("background-color"))
+    {
+      $(".tile22").css("background-image", "url(wrong.png)");
+    }
+      if($(".tile23").css("background-color") == $(".tile23right").css("background-color"))
+      {
+        tilesonrightplace++;      
+      }
+      if($(".tile23").css("background-color") != $(".tile23right").css("background-color"))
+    {
+      $(".tile23").css("background-image", "url(wrong.png)");
+    }
+      if($(".tile24").css("background-color") == $(".tile24right").css("background-color"))
+      {
+        tilesonrightplace++;      
+      }
+      if($(".tile24").css("background-color") != $(".tile24right").css("background-color"))
+    {
+      $(".tile24").css("background-image", "url(wrong.png)");
+    }
+      if($(".tile25").css("background-color") == $(".tile25right").css("background-color"))
+      {
+        tilesonrightplace++;      
+      }
+      if($(".tile25").css("background-color") != $(".tile25right").css("background-color"))
+    {
+      $(".tile25").css("background-image", "url(wrong.png)");
+    }
+      $("#tilesright").html('<span id="tilesright" style="color:white;font-size:3em;left:25%;position:absolute;">'+ Number(tilesonrightplace - 9) +'/16 (' + (((tilesonrightplace-9)/16) * 100).toFixed(2) +'%)</span>');
+
+      if($('#hardmode').is(":checked"))
+      {  
+        $("#tilesright").html('<span id="tilesright" style="color:white;font-size:3em;left:25%;position:absolute;">'+ tilesonrightplace +'/25 (' + ((tilesonrightplace/25) * 100).toFixed(2) +'%)</span>');
+      }
+      if($('#easymode').is(":checked"))
+      {  
+        $("#tilesright").html('<span id="tilesright" style="color:white;font-size:3em;left:25%;position:absolute;">'+ Number(tilesonrightplace - 16) +'/9 (' + (((tilesonrightplace-16)/9) * 100).toFixed(2) +'%)</span>');
+      }
+
+
+
+})
+var shift1 = {16: false, 49: false};
+var shift2 = {16: false, 50: false};
+var shift3 = {16: false, 51: false};
+var shift4 = {16: false, 52: false};
+
+var counterr = 0;
+$("#lazy").click(function(){
+
+ $("#maintable td").each(function(){
+
+  var randomcolor = colors[Math.floor(Math.random() * colors.length)];
+
+  counterr++;
+  $(".tile" + counterr +"").css("background-color", "" + randomcolor + "")
+
+if(counterr > 25)
+{
+  counterr = 0;
+}
+})
+
+})
+
+//disable example table modification
+setInterval(function(){
+$("#showtable td").each(function(){
+
+    $(this).off();
+})
+  
+})
+
+$('body').attr('unselectable','on')
+     .css({'-moz-user-select':'-moz-none',
+           '-moz-user-select':'none',
+           '-o-user-select':'none',
+           '-khtml-user-select':'none', 
+           '-webkit-user-select':'none',
+           '-ms-user-select':'none',
+           'user-select':'none'
+     }).bind('selectstart', function(){ return false; });
+$("#maintable td:eq(0)").focus();
+$("#maintable td:eq(0)").css("border", "3px solid black");
+var laskuri = 0;
+var right = 0;
+$(document).keydown(function(e){
+
+
+if($("#start").data('clicked'))
+{
+   if(e.key == "Enter")
+  {
+    $("#check").click();
+  }
+
+}
+
+if(e.key == "r")
+{
+  $("#replay").click();
+}
+if(e.key == "q")
+{
+  $("#randomcolors").click();
+}
+
+if(!$("#start").data('clicked'))
+{
+  if(e.key == " ")
+  {
+    $("#checkall").click();
+  }
+
+}
+
+
+if(e.key == "1")
+{
+  $("#green").click();
+  $("#green").trigger("change");
+}
+if(e.key == "2")
+{
+  $("#yellow").click();
+  $("#yellow").trigger("change");
+}
+if(e.key == "3")
+{
+  $("#blue").click();
+  $("#blue").trigger("change");
+}
+if(e.key == "4")
+{
+  $("#red").click();
+  $("#red").trigger("change");
+}
+if(e.keyCode in shift1)
+{
+  shift1[e.keyCode] = true;
+  if(shift1[16] && shift1[49]) 
+  {
+    $("#includegreen").click();
+  }
+  
+}
+if(e.keyCode in shift2)
+{
+  shift2[e.keyCode] = true;
+  if(shift2[16] && shift2[50]) 
+  {
+    $("#includeyellow").click();
+  }
+  
+}
+if(e.keyCode in shift3)
+{
+  shift3[e.keyCode] = true;
+  if(shift3[16] && shift3[51]) 
+  {
+    $("#includeblue").click();
+  }
+  
+}
+if(e.keyCode in shift4)
+{
+  shift4[e.keyCode] = true;
+  if(shift4[16] && shift4[52]) 
+  {
+    $("#includecustom").click();
+  }
+  
+}
+
+if(e.key == "e")
+{
+  $("#easymode").click();
+  $("#easymode").trigger("change");
+}
+if(e.key == "n")
+{
+  $("#normalmode").click();
+  $("#normalmode").trigger("change");
+}
+if(e.key == "h")
+{
+  $("#hardmode").click();
+  $("#hardmode").trigger("change");
+}
+if(e.key == "s")
+{
+  $("#start").click();
+}
+
+laskuri++;
+
+
+$("td").each(function(){
+
+    if($(this).css("border-color") == "rgb(0, 0, 0)")
+    {
+      if(e.key == "Control" && laskuri == 1)
+      {
+        $(this).css("background-color", ""+color1+"");
+      }
+      if(e.key == "Control" && laskuri == 2)
+      {
+        $(this).css("background-color", ""+color2+"");
+      }
+      if(e.key == "Control" && laskuri == 3)
+      {
+        $(this).css("background-color", ""+color3+"");
+      }
+      if(e.key == "Control" && laskuri == 4)
+      {
+        $(this).css("background-color", ""+color4+"");
+      }
+    }
+})
+      if(e.key == "ArrowRight")
+      {
+        right++;
+        laskuri = 0;
+        $("#maintable td:eq("+right+")").css("border", "4px solid black");  
+        $("#maintable td:eq("+right+")").prev().css("border", "1px solid white");  
+      }
+      if(e.key == "ArrowLeft")
+      {
+        right--;
+        laskuri = 0;
+        $("#maintable td:eq("+right+")").css("border", "4px solid black");  
+        $("#maintable td:eq("+right+")").next().css("border", "1px solid white");  
+      }
+if($('#hardmode').is(":checked"))
+{
+    if(e.key == "ArrowDown")
+      {
+        right += 5;
+        laskuri = 0;
+        $("#maintable td:eq("+right+")").css("border", "5px solid black");  
+        $("#maintable td:eq("+right+")").siblings().css("border", "1px solid white");  
+        $("#maintable td:eq("+right+")").parent().prev().children().siblings().css("border", "1px solid white");  
+        $("#maintable td:eq("+right+")").parent().next().children().siblings().css("border", "1px solid white");  
+      }
+      if(e.key == "ArrowUp")
+      {
+        right -= 5;
+        laskuri = 0;
+        $("#maintable td:eq("+right+")").css("border", "5px solid black");  
+        $("#maintable td:eq("+right+")").siblings().css("border", "1px solid white");  
+        $("#maintable td:eq("+right+")").parent().prev().children().siblings().css("border", "1px solid white");  
+        $("#maintable td:eq("+right+")").parent().next().children().siblings().css("border", "1px solid white");  
+      }
+}
+if($('#normalmode').is(":checked"))
+{
+    if(e.key == "ArrowDown")
+      {
+        right += 4;
+        laskuri = 0;
+        $("#maintable td:eq("+right+")").css("border", "4px solid black");  
+        $("#maintable td:eq("+right+")").siblings().css("border", "1px solid white");  
+        $("#maintable td:eq("+right+")").parent().prev().children().siblings().css("border", "1px solid white");  
+        $("#maintable td:eq("+right+")").parent().next().children().siblings().css("border", "1px solid white");  
+      }
+      if(e.key == "ArrowUp")
+      {
+        right -= 4;
+        laskuri = 0;
+        $("#maintable td:eq("+right+")").css("border", "4px solid black");  
+        $("#maintable td:eq("+right+")").siblings().css("border", "1px solid white");  
+        $("#maintable td:eq("+right+")").parent().prev().children().siblings().css("border", "1px solid white");  
+        $("#maintable td:eq("+right+")").parent().next().children().siblings().css("border", "1px solid white");  
+      }
+}
+if($('#easymode').is(":checked"))
+{
+    if(e.key == "ArrowDown")
+      {
+        right += 3;
+        laskuri = 0;
+        $("#maintable td:eq("+right+")").css("border", "3px solid black");  
+        $("#maintable td:eq("+right+")").siblings().css("border", "1px solid white");  
+        $("#maintable td:eq("+right+")").parent().prev().children().siblings().css("border", "1px solid white");  
+        $("#maintable td:eq("+right+")").parent().next().children().siblings().css("border", "1px solid white");  
+      }
+      if(e.key == "ArrowUp")
+      {
+        right -= 3;
+        laskuri = 0;
+        $("#maintable td:eq("+right+")").css("border", "3px solid black");  
+        $("#maintable td:eq("+right+")").siblings().css("border", "1px solid white");  
+        $("#maintable td:eq("+right+")").parent().prev().children().siblings().css("border", "1px solid white");  
+        $("#maintable td:eq("+right+")").parent().next().children().siblings().css("border", "1px solid white");  
+      }
+}
+
+      if(laskuri > (keis-1))
+      {
+        laskuri = 0;
+      }
+}).keyup(function(e) {
+    if (e.keyCode in shift1) 
+    {
+        shift1[e.keyCode] = false;
+    }
+    if (e.keyCode in shift2) 
+    {
+        shift2[e.keyCode] = false;
+    }
+    if (e.keyCode in shift3) 
+    {
+        shift3[e.keyCode] = false;
+    }
+    if (e.keyCode in shift4) 
+    {
+        shift4[e.keyCode] = false;
+    }
+});
+
+
+$("#maintable td").click(function(){
+
+var mathrandom = Math.floor(Math.random()*90)+1;
+
+    if($('#hardmode').is(":checked"))
+    {
+      if(mathrandom == 1)
+      {
+        $("#showtable").show();
+          setTimeout(function(){
+            $("#showtable").hide();
+          },150)
+      }
+
+    }
+
+})
+
+
+</script>
+<style>
+.green{
+  color:lime;
+}
+.red{
+  color:red;
+}
+td{
+  z-index: 100;
+  background-size: 130px 100px;
+}
+table{
+  z-index: 100;
+}
+ th{
+  font-size:1.3em;
+}
+body{
+  overflow: hidden;
+}
+#firsttable td{
+	height:50px;
+	width:50px;
+}
+.container{
+  max-width:600px;
+}
+#maintable td{
+  height:100px;
+  width:60px;
+
+}
+#showtable td{
+  height:100px;
+  width:60px;
+
+}
+#tablemodal td{
+  font-weight: bold;
+  text-transform: capitalize;
+  transition: 0.7s ease all;
+  border:1px solid black;
+  font-size: 1em;
+  text-align: center;
+}
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+border-bottom: 1px solid black;
+}
+.dropdown-content a:hover {opacity:0.7;}
+.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+</style>
+</body>
